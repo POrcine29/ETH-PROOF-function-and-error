@@ -48,8 +48,7 @@ contract SimpleContract {
     }
 }
 
-
-
+```
 
 
 
