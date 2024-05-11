@@ -12,12 +12,13 @@ To summarize these features, before running the remaining contract code, the nee
 
 Open your web browser and navigate to Remix IDE. 
 
-Click on the file icon in the File Explorer tab to create a new file and name it MySimpleContract.sol
+Click on the file icon in the File Explorer tab to create a new file and name it "MySimpleContract.sol"
 
 
 
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.6.12 <0.9.0;
+
 contract SimpleContract {
     uint256 public value;
     address public owner;
