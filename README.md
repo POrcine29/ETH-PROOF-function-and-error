@@ -48,18 +48,30 @@ contract SimpleContract {
     }
 }
 
+
+
+
+
+
 Compile the contract using the Editor's active tab, which is the contract mentioned above.
 Pressing Ctrl + S will quickly compile. In addition, you can compile by right-clicking a file in the File Explorer, clicking the play button at the top of the Editor, or by visiting the Solidity compiler and selecting the compile button.
 
+
 Click the Deploy and Run Transactions Icon on the left side menu.
+
 
 Choose REMIX VM (Cancun) as your environment.
 
+
 Click your deployed contracts
+
 
 Once to click the deployed contracts set the new value
 
+
 Once to set your new value click the owner and the value to call and see if the transaction is successful
+
+
 
 ## Authors
 
