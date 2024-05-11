@@ -14,11 +14,12 @@ Open your web browser and navigate to Remix IDE.
 
 https://remix.ethereum.org/
 
-Click on the file icon in the File Explorer tab to create a new file and name it 
+Click on the file icon in the File Explorer tab to create a new file and name it `MySimpleContract.sol`.
 
-
+```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.6.12 <0.9.0;
+
 contract SimpleContract {
     uint256 public value;
     address public owner;
