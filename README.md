@@ -15,6 +15,8 @@ Open your web browser and navigate to Remix IDE.
 Click on the file icon in the File Explorer tab to create a new file and name it MySimpleContract.sol
 
 
+
+
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.6.12 <0.9.0;
 
@@ -61,6 +63,6 @@ Once to set your new value click the owner and the value to call and see if the 
 
 ## Authors
 
-Orciene,Poliana J
+Orcine,Poliana J.
 
 8210778@ntc.edu.ph
