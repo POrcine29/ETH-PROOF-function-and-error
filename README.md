@@ -12,6 +12,8 @@ To summarize these features, before running the remaining contract code, the nee
 
 Open your web browser and navigate to Remix IDE. 
 
+https://remix.ethereum.org/
+
 Click on the file icon in the File Explorer tab to create a new file and name it 
 
 
