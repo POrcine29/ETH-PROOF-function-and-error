@@ -17,39 +17,39 @@ https://remix.ethereum.org/
 Click on the file icon in the File Explorer tab to create a new file and name it `MySimpleContract.sol`.
 
 ```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity >=0.6.12 <0.9.0;
+// SPDX-License-Identifier: MIT        
+pragma solidity ^0.8.0;
 
-contract SimpleContract {
-    uint256 public value;
-    address public owner;
+contract Errorhandling {
+    uint256 public totalValue;
 
-    constructor() {
-        owner = msg.sender;
-    }
+    function setValue(uint256 _newValue) external {
+        require(_newValue != 0, "New value must not be zero");
 
-    function setValue(uint256 _newValue) public {
-        // Require: Ensures a condition is met before executing further.
-        // Here, we require that the sender of the transaction is the owner of the contract.
-        require(msg.sender == owner, "Only the owner can set the value");
-
-        // Assert: Checks for internal errors and halts execution if conditions are not met.
-        // Here, we assert that the new value is not zero.
-        assert(_newValue != 0);
-
-        // Revert: Reverts the transaction and rolls back state changes if conditions are not met.
-        // Here, we revert if the new value is less than the current value.
-        if (_newValue < value) {
-            revert("New value must be greater than or equal to current value");
+        if (_newValue > 100) {
+            revert("New value must not exceed 100");
         }
 
-        // If all conditions are met, update the value.
-        value = _newValue;
+        uint256 newValue = totalValue + _newValue;
+        assert(newValue >= totalValue);
+
+        totalValue = newValue;
+    }
+
+    function decrementValue(uint256 _decrement) external {
+        require(_decrement <= totalValue, "Decrement cannot be greater than the total value.");
+        
+        uint256 newValue = totalValue - _decrement;
+        totalValue = newValue;
+    }
+
+    function assertExample() external pure returns (bool) {
+        // This assert will always pass, proving that it is used correctly.
+        assert(1 == 1);
+        return true;
     }
 }
-
 ```
-
 
 
 Compile the contract using the Editor's active tab, which is the contract mentioned above.
