@@ -17,36 +17,40 @@ https://remix.ethereum.org/
 Click on the file icon in the File Explorer tab to create a new file and name it `MySimpleContract.sol`.
 
 ```solidity
-// SPDX-License-Identifier: MIT        
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract Errorhandling {
-    uint256 public totalValue;
+contract TuitionPayment {
+    address public student;
+    mapping(address => uint256) public studentBalances;
+    uint256 public constant MAX_BALANCE = 500;
 
-    function setValue(uint256 _newValue) external {
-        require(_newValue != 0, "New value must not be zero");
-
-        if (_newValue > 100) {
-            revert("New value must not exceed 100");
-        }
-
-        uint256 newValue = totalValue + _newValue;
-        assert(newValue >= totalValue);
-
-        totalValue = newValue;
+    constructor() {
+        student = msg.sender;
     }
 
-    function decrementValue(uint256 _decrement) external {
-        require(_decrement <= totalValue, "Decrement cannot be greater than the total value.");
-        
-        uint256 newValue = totalValue - _decrement;
-        totalValue = newValue;
+    function deposit(uint256 _amount) public payable {
+        require(msg.sender == student, "Only the school admin can deposit");
+        require(_amount > 0, "Deposit amount must be greater than 0");
+        require(studentBalances[msg.sender] + _amount <= MAX_BALANCE, "Exceeds maximum balance");
+
+        studentBalances[msg.sender] += _amount;
+
+        // Assert that the total balance after depositing doesn't exceed the maximum balance
+        assert(studentBalances[msg.sender] <= MAX_BALANCE);
     }
 
-    function assertExample() external pure returns (bool) {
-        // This assert will always pass, proving that it is used correctly.
-        assert(1 == 1);
-        return true;
+    function withdraw(uint256 _amount) public {
+        require(_amount > 0, "Withdrawal amount must be greater than 0");
+        require(studentBalances[msg.sender] >= _amount, "Insufficient balance");
+
+        studentBalances[msg.sender] -= _amount;
+        require(payable(msg.sender).send(_amount), "Payment failed");
+    }
+
+    function checkBalance(address _student) public view returns(uint256) {
+        require(studentBalances[_student] > 0, "Student has no balance");
+        return studentBalances[_student];
     }
 }
 ```
@@ -65,10 +69,13 @@ Choose REMIX VM (Cancun) as your environment.
 Click your deployed contracts
 
 
-Once to click the deployed contracts set the new value
+Once to click the deployed contracts type of your amount that you want to deposit
 
 
-Once to set your new value click the owner and the value to call and see if the transaction is successful
+Once to set your deposit amount type the amount that you want to withdraw 
+
+
+And last is copy your address to the check balanceand click the call then click the max balance and student to call agin
 
 
 
